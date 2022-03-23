@@ -1,12 +1,21 @@
 import React from "react";
-// import ListingCard from "./ListingCard";
+import ListingCard from "./ListingCard";
 
-function ListingsContainer() {
+function ListingsContainer({ listings, deleteListing, setRefetch, query }) {
+  const renderListings = listings
+    .filter((listing) =>
+      listing.description.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((listing) => (
+      <ListingCard
+        setRefetch={setRefetch}
+        deleteListing={deleteListing}
+        listing={listing}
+      />
+    ));
   return (
     <main>
-      <ul className="cards">
-        {/* use the ListingCard component to display listings */}
-      </ul>
+      <ul className="cards">{renderListings}</ul>
     </main>
   );
 }

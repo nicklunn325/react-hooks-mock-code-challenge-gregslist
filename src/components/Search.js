@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Search() {
+function Search({ setQuery }) {
+  const [search, setSearch] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
+    setQuery(search);
   }
 
   return (
@@ -12,8 +13,8 @@ function Search() {
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
       <button type="submit">🔍</button>
     </form>
@@ -21,3 +22,9 @@ function Search() {
 }
 
 export default Search;
+
+// 4. I can search for listings by their name.
+
+// collect input from form and store in state in Search component
+// when user submits search, search term must be passed up to App
+// in App use the search term to filter listings
